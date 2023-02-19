@@ -2,20 +2,10 @@
 > 
 > If you want to see more, [hansanghyun-selfthost/media](https://github.com/hansanghyun-selfthost/media)
 
-## docker
+## install
 
-**main - swarm**
-
-```sh
-docker stack deploy -c <(docker-compose config) plex
-```
-
-**local**
-
-```sh
-docker-compose -f docker-compose.dev.yaml up -d
-```
-
+PLEX CLAIM 가져오기
+https://plex.tv/claim
 
 ## Plug-ins
 
