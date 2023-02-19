@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    networks:
+      - media_net
+      - traefik_proxy
+      - default
+    environment:
+      - PUID=1026
+      - PGID=100
+      - TZ=Asia/Seoul
+      - AUTO_UPDATE=true #optional
+    volumes:
+      - ./.docker/config:/config
+    #   - <path to blackhole>:/downloads
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jackett.entrypoints=https
+      - traefik.http.routers.jackett.rule=Host(`jackett.media.hyeon.pro`)
+      - traefik.http.routers.jackett.tls.certresolver=leresolver
+      - traefik.http.services.jackett.loadbalancer.server.port=9117
+
+########################### NETWORKS
+networks:
+  media_net:
+    external: true
+  traefik_proxy:
+    external: true
