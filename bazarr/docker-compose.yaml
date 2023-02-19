@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    networks:
+      - media_net
+      - traefik_proxy
+      - default
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Seoul
+    volumes:
+      - ./.docker/config:/config
+      - ../media/영화:/movies #optional
+      - ../media/애니메이션:/tv #optional
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.bazarr.entrypoints=https
+      - traefik.http.routers.bazarr.rule=Host(`bazarr.media.hyeon.pro`)
+      - traefik.http.routers.bazarr.tls.certresolver=leresolver
+      - traefik.http.services.bazarr.loadbalancer.server.port=6767
+
+########################### NETWORKS
+networks:
+  media_net:
+    external: true
+  traefik_proxy:
+    external: true
