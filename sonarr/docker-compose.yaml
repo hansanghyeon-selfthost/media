@@ -1,7 +1,8 @@
 version: "3.8"
 services:
-  sonarr:
+  app:
     image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
     networks:
       - media_net
       - traefik_proxy
@@ -15,8 +16,6 @@ services:
       - ../media:/media
       - ../media/INBOX:/downloads
     restart: unless-stopped
-    ports:
-     - 8989:8989
     labels:
       - traefik.enable=true
       - traefik.http.routers.sonarr.entrypoints=https

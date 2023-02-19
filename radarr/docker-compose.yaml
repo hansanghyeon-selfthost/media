@@ -1,7 +1,8 @@
 version: "3.8"
 services:
-  radarr:
+  app:
     image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr 
     networks:
       - media_net
       - traefik_proxy

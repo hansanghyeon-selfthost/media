@@ -5,6 +5,7 @@ services:
     env_file:
       - ./.env
     restart: unless-stopped
+    container_name: plex 
     networks:
       - media_net
       - traefik_proxy 

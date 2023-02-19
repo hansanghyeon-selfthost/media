@@ -2,6 +2,7 @@ version: '3.8'
 services:
   app:
     image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: torrent
     networks:
       - media_net
       - traefik_proxy
