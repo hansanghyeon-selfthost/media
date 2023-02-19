@@ -1,7 +1,3 @@
-> This has been restored. Manage through media-related self-hosted integrations
-> 
-> If you want to see more, [hansanghyun-selfthost/media](https://github.com/hansanghyun-selfthost/media)
-
 ## install
 
 PLEX CLAIM 가져오기
