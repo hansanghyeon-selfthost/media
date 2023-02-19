@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  app:
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    networks:
+      - media_net
+      - traefik_proxy 
+      - default
+    environment:
+      - TZ=Asia/Seoul
+      - PLEX_CLAIM=$PLEX_CLAIM
+      - ADVERTISE_IP=$ADVERTISE_IP
+      - PUID=0
+      - PGID=0
+      - VERSION=latest
+    # 생설될 컨테이너 이름
+    image: lscr.io/linuxserver/plex:latest
+    # 컨테이너가 사용할 저장 장소
+    volumes:
+      - ./media:/data
+      - ./config:/config
+      - ./Plug-ins:/config/Library/Application Support/Plex Media Server/Plug-ins
+    ports:
+      - 32400:32400
+      - 32400:32400/udp
+      #- 1900:1900/udp (Plex DLNA 서버 액세스)
+      #- 3005:3005
+      #- 5353:5353/udp (이전 Bonjour/Avahi 네트워크 검색)
+      #- 8324:8324 (Plex Companion을 통해 Roku용 Plex 제어)
+      #- 32410:32410/udp (현재 GDM 네트워크 검색)
+      #- 32412:32412/udp 위와동일
+      #- 32413:32413/udp 위와동일
+      #- 32414:32414/udp 위와동일
+      #- 32469:32469 (plex DLNA 서버에 액세스)
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.plex.entrypoints=https
+      - traefik.http.routers.plex.rule=Host(`plex.hyeon.pro`)
+      - traefik.http.routers.plex.tls.certresolver=leresolver
+      - traefik.http.services.plex.loadbalancer.server.port=32400
+
+########################### NETWORKS
+networks:
+  media_net:
+    external: true
+  traefik_proxy:
+    external: true

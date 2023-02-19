@@ -1,0 +1,60 @@
+[
+  {
+    "id": "max_num_posters",
+    "label": "Maximum Number of Posters",
+    "type": "enum",
+    "values": [ "5", "10", "20" ],
+    "default": "5"
+  },
+  {
+    "id": "max_num_arts",
+    "label": "Maximum Number of Arts",
+    "type": "enum",
+    "values": [ "5", "10", "20" ],
+    "default": "5"
+  },
+  {
+    "id": "override_movie_id",
+    "label": "Override metadata id for Movie",
+    "type": "enum",
+    "values": [ "None", "IMDB" ],
+    "default": "None"
+  },
+  {
+    "id": "override_tv_id",
+    "label": "Override metadata id for TV shows",
+    "type": "enum",
+    "values": [ "None", "TVDB" ],
+    "default": "None"
+  },
+  {
+    "id": "use_mpaa",
+    "label": "Use MPAA film rating system",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "use_title_decomposition",
+    "label": "Index titles by decomposed Hangul syllables",
+    "type": "bool",
+    "default": "true"
+  },
+  {
+    "id": "use_https_for_image",
+    "label": "Use https for image download",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "http_proxy",
+    "label": "Web proxy (http) (PMS restart required)",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "id": "https_proxy",
+    "label": "Secure web proxy (https) (PMS restart required)",
+    "type": "text",
+    "default": ""
+  }
+]
