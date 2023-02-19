@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    networks:
+      - media_net
+      - traefik_proxy
+      - default
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Seoul
+    volumes:
+      - ./.docker/sonarr/config:/config
+      - ../media:/media
+      - ../media/INBOX:/downloads
+    restart: unless-stopped
+    ports:
+     - 8989:8989
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sonarr.entrypoints=https
+      - traefik.http.routers.sonarr.rule=Host(`sonarr.media.hyeon.pro`)
+      - traefik.http.routers.sonarr.tls.certresolver=leresolver
+      - traefik.http.services.sonarr.loadbalancer.server.port=8989
+
+########################### NETWORKS
+networks:
+  media_net:
+    external: true
+  traefik_proxy:
+    external: true
