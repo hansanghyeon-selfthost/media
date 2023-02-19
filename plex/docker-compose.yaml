@@ -20,7 +20,7 @@ services:
     image: lscr.io/linuxserver/plex:latest
     # 컨테이너가 사용할 저장 장소
     volumes:
-      - ./media:/data
+      - ../media:/data
       - ./config:/config
       - ./Plug-ins:/config/Library/Application Support/Plex Media Server/Plug-ins
     ports:
